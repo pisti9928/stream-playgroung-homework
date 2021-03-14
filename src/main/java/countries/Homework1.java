@@ -44,7 +44,8 @@ public class Homework1 {
      * Prints the populations of the first ten least populous countries.
      */
     public void streamPipeline4() {
-        // TODO
+        countries.stream().mapToLong(Country::getPopulation).sorted().limit(10).forEach(System.out::println);
+
     }
 
     /**
