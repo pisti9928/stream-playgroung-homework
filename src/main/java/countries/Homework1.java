@@ -116,8 +116,7 @@ ed by the language code "es").
      * Returns the largest country with non-null area.
      */
     public Optional<Country> streamPipeline14() {
-        // TODO
-        return null;
+        return countries.stream().filter(country -> country.getArea() != null).max(Comparator.comparing(Country::getArea));
     }
 
     /**
