@@ -130,7 +130,7 @@ ed by the language code "es").
      * Prints all distinct timezones of European and Asian countries.
      */
     public void streamPipeline16() {
-        // TODO
+        countries.stream().filter(country -> country.getRegion() == Region.EUROPE || country.getRegion() == Region.ASIA).flatMap(country -> country.getTimezones().stream()).distinct().forEach(System.out::println);
     }
 
 }
