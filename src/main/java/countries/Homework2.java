@@ -3,6 +3,7 @@ package countries;
 import java.io.IOException;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 import static java.util.stream.Collectors.*;
@@ -134,16 +135,24 @@ public class Homework2 {
      * Returns the list of capitals by region whose name is the same is the same as the name of their country.
      */
     public Map<Region, List<String>> streamPipeline14() {
-        // TODO
-        return null;
+        return countries.stream().collect(groupingBy(c -> c.getRegion(), filtering(c -> c.getCapital() == c.getName(), mapping(Country::getCapital, toList()))));
     }
 
+
+    private static double osztasVagyNaN(double szam, BigDecimal oszto){
+        if (oszto == null){
+            return Double.NaN;
+        }
+        else{
+            return BigDecimal.valueOf(szam).divide(oszto, 64, RoundingMode.HALF_EVEN).doubleValue();
+        }
+    }
     /**
      *  Returns a map of country name-population density pairs.
      */
     public Map<String, Double> streamPipeline15() {
-        // TODO
-        return null;
+        return countries.stream()
+                .collect(toMap(Country::getName, country -> osztasVagyNaN(country.getPopulation(), country.getArea())));
     }
 
 }
